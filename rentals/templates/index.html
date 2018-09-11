@@ -1,0 +1,54 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<header>
+  <h1>Step 1. Choose a city</h1>
+</header>
+<article>
+  <section>
+    <div class="container-fluid">
+      <a href="#">
+        <div id="gda-logo" class="city-logo col-12 col-md-4">
+          <div class="overlay">
+            {% load static %}
+            <img src="{% static 'img/gdansk-menu-photo.jpg'%}" class="img-fluid" alt="Gdansk Old Town"/>
+            <a class="city-flats-info" href="#">Gdańsk. Wolnych mieszkań: 35</a>
+          </div>
+        </div>
+      </a>
+      <a href="#">
+        <div id="gdy-logo" class="city-logo col-12 col-md-4">
+          <div class="overlay">
+            {% load static %}
+            <img src="{% static 'img/gdynia-menu-photo.jpg'%}" class="img-fluid" alt="Gdynia center"/>
+            <a class="city-flats-info" href="#">Gdynia. Wolnych mieszkań: 11</a>
+          </div>
+        </div>
+      </a>
+      <a href="#">
+        <div id="sop-logo" class="city-logo col-12 col-md-4">
+          <div class="overlay">
+            {% load static %}
+            <img src="{% static 'img/sopot-menu-photo.jpg'%}" class="img-fluid" alt="Sopot bird view"/>
+            <a class="city-flats-info" href="#">Sopot. Wolnych mieszkań: 8</a>
+          </div>
+        </div>
+      </a>
+      <div class="form-group align-items-center">
+        <div class='input-group date' id="first-day">
+          <input type='text' class="form-control" />
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
+        <div class='input-group date' id="last-day">
+          <input type='text' class="form-control" />
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
+      </div>
+    </div>
+  </section>
+</article>
+{% endblock %}

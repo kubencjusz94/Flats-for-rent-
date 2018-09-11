@@ -1,11 +1,15 @@
 from django.db import models
 import uuid
+from datetime import datetime
 
 class Cities(models.Model):
     nazwa = models.CharField(max_length=30)
-    wojewodztwo = models.CharField(max_length=20)
     def __str__(self):
         return self.nazwa
+    class Meta:
+        verbose_name_plural = "Cities"
+    def __str__(self):
+        return f'{self.nazwa}'
 
 class Flats(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='Unikatowy klucz id')
@@ -14,7 +18,8 @@ class Flats(models.Model):
     cena = models.IntegerField()
     kaucja = models.BooleanField()
     opis = models.TextField(max_length=500)
-
+    data_wynajecia = models.DateField(null=True, blank=True)
+    data_oddania = models.DateField (null=True, blank=True)
     FLAT_STATUS = (
         ('d', 'Dostępne'),
         ('n', 'Niedostępne')
@@ -27,5 +32,8 @@ class Flats(models.Model):
         help_text='Dostępność mieszkania',
     )
 
+    class Meta:
+        verbose_name_plural = "Flats"
+
     def __str__(self):
-        return f'{self.id} ({self.book.miasto}) ({self.book.adres})'
+        return f'{self.miasto}, {self.adres}'
