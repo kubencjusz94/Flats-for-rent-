@@ -1,11 +1,11 @@
 $(function(){
-  var choosen_city;
   $('.city-logo').on('click',function(){
     $('.city-logo').fadeOut();
-    $('.city-logo').remove();
-    $('#first-day').css('display','grid');
-    $('#first-day').datepicker();
-    $('#last-day').css('display','grid');
-    $('#last-day').datepicker();
-  })
+
+    var choosen_city=$(this).attr('id');
+
+    $('h1').text(choosen_city);
+    $('#form-cont').css('display','inline-block');
+    $('.datepicker').datepicker();
+  });
 });

@@ -12,7 +12,7 @@
           <div class="overlay">
             {% load static %}
             <img src="{% static 'img/gdansk-menu-photo.jpg'%}" class="img-fluid" alt="Gdansk Old Town"/>
-            <a class="city-flats-info" href="#">Gdańsk. Wolnych mieszkań: 35</a>
+            <a class="city-flats-info" href="#">Gdańsk. Wolnych mieszkań: {{available_flats_gda}}</a>
           </div>
         </div>
       </a>
@@ -21,7 +21,7 @@
           <div class="overlay">
             {% load static %}
             <img src="{% static 'img/gdynia-menu-photo.jpg'%}" class="img-fluid" alt="Gdynia center"/>
-            <a class="city-flats-info" href="#">Gdynia. Wolnych mieszkań: 11</a>
+            <a class="city-flats-info" href="#">Gdynia. Wolnych mieszkań: {{available_flats_gdy}}</a>
           </div>
         </div>
       </a>
@@ -30,24 +30,27 @@
           <div class="overlay">
             {% load static %}
             <img src="{% static 'img/sopot-menu-photo.jpg'%}" class="img-fluid" alt="Sopot bird view"/>
-            <a class="city-flats-info" href="#">Sopot. Wolnych mieszkań: 8</a>
+            <a class="city-flats-info" href="#">Sopot. Wolnych mieszkań: {{available_flats_sop}}</a>
           </div>
         </div>
       </a>
-      <div class="form-group align-items-center">
-        <div class='input-group date' id="first-day">
-          <input type='text' class="form-control" />
-            <span class="input-group-addon">
-              <span class="glyphicon glyphicon-calendar"></span>
-            </span>
-        </div>
-        <div class='input-group date' id="last-day">
-          <input type='text' class="form-control" />
-            <span class="input-group-addon">
-              <span class="glyphicon glyphicon-calendar"></span>
-            </span>
-        </div>
-      </div>
+      <div id="form-cont" class="justify-content-md-center">
+        <form>
+          <div  class="input-group date" data-provide="datepicker">
+            <input name="first-day-date" type="text" class="form-control" placeholder="From...">
+            <div class="input-group-addon">
+                <span class="glyphicon-th"></span>
+            </div>
+          </div>
+          <div  class="input-group date" data-provide="datepicker">
+            <input name="last-day-date" type="text" class="form-control" placeholder="To...">
+            <div class="input-group-addon">
+                <span class="glyphicon-th"></span>
+            </div>
+          </div>
+          <button type="submit"  name="submit" class="btn btn-info">Search</button>
+        </form>
+    </div>
     </div>
   </section>
 </article>

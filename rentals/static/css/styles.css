@@ -16,6 +16,13 @@ img
   max-width: 100%;
   max-height: 100%;
 }
+label
+{
+  float:left;
+  margin:1%;
+  font-size:24px;
+  color:#2d5986;
+}
 a:link
 {
   color: #fff;
@@ -69,7 +76,15 @@ a:active
 {
   opacity:0.7;
 }
-#last-day, #first-day
+#form-cont
 {
+  margin:40%;
+  margin-top:10%;
+  width:20%;
   display:none;
+}
+.input-group
+{
+  margin-top:5%;
+  margin-bottom:5%;
 }

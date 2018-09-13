@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<header>
+  <h1>Searching For Gdańsk</h1>
+</header>
+<article>
+  <section>
+    {% if flats_list %}
+  <ul>
+    {% for flats in flats_list %}
+      <li>
+      {{ flats.adres }}
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no available flats</p>
+  {% endif %}
+  </section>
+</article>
+{% endblock %}
