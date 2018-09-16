@@ -2,55 +2,20 @@
 
 {% block content %}
 <header>
-  <h1>Step 1. Choose a city</h1>
+  <h1>If you are going to rent our flat becareful! The are equipped with seven seasons The Game of Thrones.</h1>
 </header>
 <article>
   <section>
     <div class="container-fluid">
-      <a href="#">
-        <div id="gda-logo" class="city-logo col-12 col-md-4">
-          <div class="overlay">
-            {% load static %}
-            <img src="{% static 'img/gdansk-menu-photo.jpg'%}" class="img-fluid" alt="Gdansk Old Town"/>
-            <a class="city-flats-info" href="#">Gdańsk. Wolnych mieszkań: {{available_flats_gda}}</a>
-          </div>
-        </div>
-      </a>
-      <a href="#">
-        <div id="gdy-logo" class="city-logo col-12 col-md-4">
-          <div class="overlay">
-            {% load static %}
-            <img src="{% static 'img/gdynia-menu-photo.jpg'%}" class="img-fluid" alt="Gdynia center"/>
-            <a class="city-flats-info" href="#">Gdynia. Wolnych mieszkań: {{available_flats_gdy}}</a>
-          </div>
-        </div>
-      </a>
-      <a href="#">
-        <div id="sop-logo" class="city-logo col-12 col-md-4">
-          <div class="overlay">
-            {% load static %}
-            <img src="{% static 'img/sopot-menu-photo.jpg'%}" class="img-fluid" alt="Sopot bird view"/>
-            <a class="city-flats-info" href="#">Sopot. Wolnych mieszkań: {{available_flats_sop}}</a>
-          </div>
-        </div>
-      </a>
-      <div id="form-cont" class="justify-content-md-center">
-        <form>
-          <div  class="input-group date" data-provide="datepicker">
-            <input name="first-day-date" type="text" class="form-control" placeholder="From...">
-            <div class="input-group-addon">
-                <span class="glyphicon-th"></span>
-            </div>
-          </div>
-          <div  class="input-group date" data-provide="datepicker">
-            <input name="last-day-date" type="text" class="form-control" placeholder="To...">
-            <div class="input-group-addon">
-                <span class="glyphicon-th"></span>
-            </div>
-          </div>
-          <button type="submit"  name="submit" class="btn btn-info">Search</button>
-        </form>
-    </div>
+      <div class="jumbotron">
+        <h2 class="display-4">Hello, friend! We've got {{ available_flats }} available flats!</h2>
+        <p class="lead">Looking for a short term flat? You're in the right place!</p>
+        <hr class="my-4">
+        <p>We offer flats in Gdańsk, Gdynia, Sopot.</p>
+        <p class="lead">
+          <a class="btn btn-primary btn-lg" href="{% url 'rental_form' %}" role="button">Go!  </a>
+        </p>
+      </div>
     </div>
   </section>
 </article>

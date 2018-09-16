@@ -53,6 +53,7 @@ a:active
 {
   display:inline-block;
   margin-top:1%;
+  cursor:pointer;
 }
 .overlay
 {
@@ -78,13 +79,17 @@ a:active
 }
 #form-cont
 {
+  display:none;
   margin:40%;
   margin-top:10%;
   width:20%;
-  display:none;
 }
 .input-group
 {
   margin-top:5%;
   margin-bottom:5%;
+}
+.jumbotron
+{
+  background: none;
 }

@@ -3,5 +3,6 @@ from rentals import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('flats_list/',views.FlatsListView.as_view(), name='flats'),
+    path('rental_form/', views.rental_flats, name='rental_form'),
+    path('flats_list/', views.FlatsListView.as_view(), name='flats'),
 ]
