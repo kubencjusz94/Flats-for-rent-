@@ -3,8 +3,7 @@ from rentals.models import Cities, Flats
 from django.views import generic
 
 import datetime
-from django.shortcuts import get_object_or_404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse
 from django.urls import reverse
 from rentals.forms import RentalForm
 
@@ -15,7 +14,7 @@ def index(request):
     }
     return render(request, 'index.html', context=context)
 
-def rental_flats(request):
+def rental_form(request):
     available_flats_gda = Cities.objects.filter(nazwa='Gdańsk',flats__status__contains='d').count()
     available_flats_gdy = Cities.objects.filter(nazwa='Gdynia',flats__status__contains='d').count()
     available_flats_sop = Cities.objects.filter(nazwa='Sopot',flats__status__contains='d').count()
@@ -25,6 +24,13 @@ def rental_flats(request):
         'available_flats_sop': available_flats_sop,
     }
     return render(request, 'rentals/rental_form.html', context)
+
+def search(request):
+    if 'city-name' in request.GET:
+        message = 'You searched for: %r' % request.GET['city-name']
+    else:
+        message = 'You submitted an empty form.'
+    return HttpResponse(message)
 
 class FlatsListView(generic.ListView):
     model = Flats
