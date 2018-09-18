@@ -26,13 +26,15 @@ def rental_form(request):
     return render(request, 'rentals/rental_form.html', context)
 
 def search(request):
-    if 'city-name' in request.GET:
-        message = 'You searched for: %r' % request.GET['city-name']
+    if request.method == 'POST':
+        return HttpResponse("Hello POST method")
     else:
-        message = 'You submitted an empty form.'
-    return HttpResponse(message)
+        cityname = request.GET['city-name']
 
-class FlatsListView(generic.ListView):
-    model = Flats
-    def get_queryset(self):
-        return Flats.objects.filter(miasto__nazwa__contains='Gdańsk');
+    cityname_filter =  Flats.objects.filter(miasto__nazwa__contains=cityname);
+
+    context = {
+        'cityname' : cityname,
+        'cityname_filter': cityname_filter,
+    }
+    return render(request, 'rentals/flats_list.html',context)

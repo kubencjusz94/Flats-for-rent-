@@ -29,7 +29,7 @@
           </div>
         </div>
       <div id="form-cont" class="justify-content-md-center">
-        <form action="search/" method="get">
+        <form action="flats_list/" method="get">
           {% csrf_token %}
           <div  class="input-group date" data-provide="datepicker">
             <input name="first-day-date" type="text" class="form-control" placeholder="From..." autocomplete="off">
@@ -45,9 +45,9 @@
           </div>
           <div class="input-group">
             <select id="city" name="city-name" class="form-control">
-                <option value="gda-logo">Gdańsk</option>
-                <option value="gdy-logo">Gdynia</option>
-                <option value="sop-logo">Sopot</option>
+                <option >Gdańsk</option>
+                <option >Gdynia</option>
+                <option >Sopot</option>
               </select>
           </div>
           <a href="{url 'flats_list'}"><button type="submit" name="submit-city-date" class="btn btn-info">Search</button></a>
