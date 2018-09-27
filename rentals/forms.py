@@ -1,14 +1,13 @@
-from django import forms
-import datetime
+from django.forms import ModelForm, Select, TextInput, DateInput
+from rentals.models import Flats
 
-class RentalForm(forms.Form):
-    rental_date= forms.DateField()
-    surrender_date= forms.DateField()
-    choosen_city= forms.CharField()
-
-    def clean_rental_date(self):
-        data= self.cleaned_data['rental_date']
-        #Selected date can't be in the past
-        if data < datatime.date.today():
-            raise ValidationError(_('Invalid date- you cant rent in the past, Thats not "Back to the Future"'))
-        return data
+class RentalModelForm(ModelForm):
+    class Meta:
+        model =  Flats
+        fields = ['miasto', 'data_wynajecia', 'data_oddania']
+        #Specify fields manually by widgets to fit their format to BootStrap Datepicker and give some css attr's
+        widgets = {
+            'miasto': Select(attrs = {'class':'form-control'}),
+            'data_wynajecia': DateInput(attrs = {'type':'text', 'class':'form-control datepicker', 'placeholder':'From...', 'autocomplete':'off'},format = '%m/%d/%Y'),
+            'data_oddania': DateInput(attrs = {'type':'text', 'class':'form-control datepicker', 'placeholder':'To...', 'autocomplete':'off'}, format = '%m/%d/%Y')
+        }

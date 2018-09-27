@@ -1,0 +1,41 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<header>
+  <h1>Step 1. Choose a city</h1>
+</header>
+<article>
+  <section>
+    <div class="container-fluid">
+        <div id="gda-logo" class="city-logo col-12 col-md-4">
+          <div class="overlay">
+            <a href="{% url 'searching_panel' cityname='Gdańsk' %}">
+              {% load static %}
+              <img src="{% static 'img/gdansk-menu-photo.jpg'%}" class="img-fluid" alt="Gdansk Old Town"/>
+              <span class="city-flats-info">Gdańsk. Wolnych mieszkań: {{available_flats_gda}}</span>
+            </a>
+          </div>
+        </div>
+        <div id="gdy-logo" class="city-logo col-12 col-md-4">
+          <div class="overlay">
+            <a href="{% url 'searching_panel' cityname='Gdynia' %}">
+            {% load static %}
+              <img src="{% static 'img/gdynia-menu-photo.jpg'%}" class="img-fluid" alt="Gdynia center"/>
+              <span class="city-flats-info">Gdynia. Wolnych mieszkań: {{available_flats_gdy}}</span>
+            </a>
+          </div>
+        </div>
+        <div id="sop-logo" class="city-logo col-12 col-md-4">
+          <div class="overlay">
+            <a href="{% url 'searching_panel' cityname='Sopot' %}">
+            {% load static %}
+                <img src="{% static 'img/sopot-menu-photo.jpg'%}" class="img-fluid" alt="Sopot bird view"/>
+              <span class="city-flats-info">Sopot. Wolnych mieszkań: {{available_flats_sop}}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</article>
+{% endblock %}

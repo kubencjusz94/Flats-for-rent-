@@ -79,17 +79,24 @@ a:active
 }
 #form-cont
 {
-  display:none;
-  margin:40%;
-  margin-top:10%;
-  width:20%;
+  padding-top:2%;
+  padding-bottom:2%;
 }
-.input-group
+.form-parts
 {
-  margin-top:5%;
-  margin-bottom:5%;
+  float:left;
+  width:25%;
+  padding-left:5%;
 }
 .jumbotron
 {
   background: none;
+}
+.clearboth
+{
+  clear:both;
+}
+.datepicker
+{
+    z-index:'1001';
 }

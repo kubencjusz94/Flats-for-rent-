@@ -1,0 +1,43 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<header>
+  <h1>Step 2. Set a date </h1>
+</header>
+<article>
+  <section>
+    <div class="container-fluid">
+      <div id="form-cont" class="justify-content-md-center">
+        <form action="" method="GET">
+          {% csrf_token %}
+          <div class="input-group form-parts">
+            {{ form.miasto}}
+          </div>
+          <div class="input-group form-parts">
+            {{ form.data_wynajecia }}
+            <div class="input-group-addon">
+                <span class="glyphicon-th"></span>
+            </div>
+          </div>
+          <div class="input-group form-parts">
+            {{ form.data_oddania }}
+            <div class="input-group-addon">
+                <span class="glyphicon-th"></span>
+            </div>
+          </div>
+          <input type="submit"  name="Submit" class="btn btn-info" value="Search">
+        </form>
+    </div>
+    <div>
+      <ul>
+        {% for flats in cityname_filter %}
+         <li>
+           {{flats.adres}}
+           {{cityname}}
+         </li>
+         {% endfor %}
+      </ul>
+    </div>
+  </section>
+</article>
+{% endblock %}
