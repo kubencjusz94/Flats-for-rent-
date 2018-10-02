@@ -81,12 +81,14 @@ a:active
 {
   padding-top:2%;
   padding-bottom:2%;
+  width:100%;
 }
 .form-parts
 {
   float:left;
-  width:25%;
-  padding-left:5%;
+  width:15%;
+  padding-left:1%;
+  margin:0;
 }
 .jumbotron
 {
@@ -99,4 +101,8 @@ a:active
 .datepicker
 {
     z-index:'1001';
+}
+#flat-list
+{
+  visibility: hidden;
 }
