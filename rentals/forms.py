@@ -1,9 +1,9 @@
 from django.forms import ModelForm, Select, TextInput, DateInput
-from rentals.models import Flats
+from rentals.models import Reservations
 
 class RentalModelForm(ModelForm):
     class Meta:
-        model =  Flats
+        model =  Reservations
         fields = ['data_wynajecia', 'data_oddania']
         #Specify fields manually by widgets to fit their format to BootStrap Datepicker and give some css attr's
         widgets = {

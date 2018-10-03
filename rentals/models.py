@@ -4,8 +4,6 @@ from datetime import datetime
 
 class Cities(models.Model):
     nazwa = models.CharField(max_length=30)
-    def __str__(self):
-        return self.nazwa
     class Meta:
         verbose_name_plural = "Cities"
     def __str__(self):
@@ -18,8 +16,7 @@ class Flats(models.Model):
     cena = models.IntegerField()
     kaucja = models.BooleanField()
     opis = models.TextField(max_length=500)
-    data_wynajecia = models.DateField(null=True, blank=True)
-    data_oddania = models.DateField (null=True, blank=True)
+    zdjecie = models.ImageField(null=True, blank=True)
     FLAT_STATUS = (
         ('d', 'Dostępne'),
         ('n', 'Niedostępne')
@@ -37,3 +34,16 @@ class Flats(models.Model):
 
     def __str__(self):
         return f'{self.miasto}, {self.adres}'
+
+class Reservations(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='Unikatowy klucz id')
+    mieszkanie = models.ForeignKey('Flats', on_delete=models.SET_NULL, null=True)
+    telefon = models.CharField(max_length=15, help_text='Telefon kontaktowy', null=True)
+    data_wynajecia = models.DateField(null=True, blank=True)
+    data_oddania = models.DateField (null=True, blank=True)
+
+    class Meta:
+        verbose_name_plural = "Reservations"
+
+    def __str__(self):
+        return f'{self.id}, {self.mieszkanie}, {self.data_wynajecia}, {self.data_oddania}'
