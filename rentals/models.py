@@ -16,7 +16,7 @@ class Flats(models.Model):
     cena = models.IntegerField()
     kaucja = models.BooleanField()
     opis = models.TextField(max_length=500)
-    zdjecie = models.ImageField(null=True, blank=True)
+    zdjecie = models.ImageField(upload_to='media', blank=True)
     FLAT_STATUS = (
         ('d', 'Dostępne'),
         ('n', 'Niedostępne')

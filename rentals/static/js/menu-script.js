@@ -5,9 +5,10 @@ $(document).ready(function(){
 
   $('.datepicker').datepicker({
     orientation: 'top',
+    format: 'yyyy-mm-dd',
   });
 
-  $('#myform').submit(function(e){
+/*  $('#myform').submit(function(e){
     $.ajax({
       data: $(this).serialize(),
       type: $(this).attr('method'),
@@ -17,5 +18,5 @@ $(document).ready(function(){
       }
     });
     return false;
-  });
+  });*/
 });

@@ -26,20 +26,46 @@
             <input type="submit" name="Submit" class="btn btn-info" value="Search">
           </div>
           <div class="clearboth">
-
+          </div>
+          <div class="error-list">
+            {{form.non_field_errors}}
           </div>
         </form>
     </div>
     <div id="flat-list">
-      <ul>
-        {% for flats in cityname_filter %}
-         <li>
-           {{flats.adres}}
-           {{cityname}}
-           {{s}}
-         </li>
-         {% endfor %}
-      </ul>
+      {% if filter %}
+        {% for flats in filter %}
+          <div class="flat-list-elements">
+            <div class="flat-list-img">
+              <img src="{{flats.zdjecie.url}}" alt="flat-photo">
+            </div>
+            <div class="flat-list-info">
+              <div class="flat-list-header">
+                <h2>ul. {{flats.adres}}, {{flats.miasto}}</h2>
+              </div>
+              <div class="flat-list-prize">
+                <h2>{{flats.cena}} zł/dobę</h2>
+              </div>
+              <div class="clearboth"></div>
+              <div class="flat-list-desc">
+                  {{flats.opis}}
+              </div>
+              <div class="{% if flats.kaucja %} kaucja-true {% else %} kaucja-false {% endif %} kaucja-div-position">
+                  {% if flats.kaucja %}
+                    <h3>Kaucja: Tak</h3>
+                  {% else %}
+                    <h3>Kaucja: Nie</h3>
+                  {% endif %}
+              </div>
+            </div>
+            <div class="clearboth"></div>
+          </div>
+          {% endfor %}
+      {% else %}
+        <div class="unavailable-flats-info">
+          <p>At this time there are not available flats in {{cityname}}.</p>
+        </div>
+      {% endif %}
     </div>
   </section>
 </article>
