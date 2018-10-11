@@ -1,7 +1,7 @@
 from django.db import models
 import uuid
 from datetime import datetime
-
+from django.urls import reverse
 class Cities(models.Model):
     nazwa = models.CharField(max_length=30)
     class Meta:
@@ -32,12 +32,16 @@ class Flats(models.Model):
     class Meta:
         verbose_name_plural = "Flats"
 
+    def get_absolute_url(self):
+        return reverse('flats_detail', args=[str(self.id)])
+
     def __str__(self):
         return f'{self.miasto}, {self.adres}'
 
 class Reservations(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='Unikatowy klucz id')
     mieszkanie = models.ForeignKey('Flats', on_delete=models.SET_NULL, null=True)
+    nazwisko = models. CharField(max_length=30, null=True)
     telefon = models.CharField(max_length=15, help_text='Telefon kontaktowy', null=True)
     data_wynajecia = models.DateField(null=True, blank=True)
     data_oddania = models.DateField (null=True, blank=True)

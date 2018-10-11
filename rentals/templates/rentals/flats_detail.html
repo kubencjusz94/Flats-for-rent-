@@ -1,0 +1,80 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <header>
+    <h1>Krok 3. Zapoznaj się z ofertą i zarezerwuj mieszkanie </h1>
+  </header>
+  <article>
+    <section>
+      <div class="conteinter-fluid">
+        <div class="flat-detail-form">
+          <div id="form-cont" class="justify-content-md-center">
+            <form id="myform" action="" method="POST">
+              {% csrf_token %}
+              <div class="input-group form-parts">
+                {{ form.data_wynajecia }}
+                <div class="input-group-addon">
+                    <span class="glyphicon-th"></span>
+                </div>
+              </div>
+              <div class="input-group form-parts">
+                {{ form.data_oddania }}
+                <div class="input-group-addon">
+                    <span class="glyphicon-th"></span>
+                </div>
+              </div>
+              <div class="input-group form-parts">
+                {{ form.nazwisko }}
+                <div class="input-group-addon">
+                    <span class="glyphicon-th"></span>
+                </div>
+              </div>
+              <div class="input-group form-parts">
+                {{ form.telefon }}
+                <div class="input-group-addon">
+                    <span class="glyphicon-th"></span>
+                </div>
+              </div>
+              <div class="form-parts">
+                <input type="submit" name="Submit" class="btn btn-info" value="Rent">
+              </div>
+              <div class="{% if validation %} pos-response-mess {% else %} neg-response-mess {% endif %}">
+                {{mess}}
+              </div>
+              <div class="clearboth">
+              </div>
+              <div class="error-list">
+                {{form.non_field_errors}}
+              </div>
+            </form>
+        </div>
+        </div>
+        <div id="flat-detail-content">
+          <div id="flat-detail-info">
+          <div class="flat-list-prize">
+            <h2>{{flats.cena}} zł/dobę</h2>
+          </div>
+          <div id="flat-detail-header">
+            <h2>ul. {{flats.adres}}, {{flats.miasto}}</h2>
+          </div>
+            <div class="{% if flats.kaucja %} kaucja-true {% else %} kaucja-false {% endif %} kaucja-div-position">
+                {% if flats.kaucja %}
+                  <h3>Kaucja: Tak</h3>
+                {% else %}
+                  <h3>Kaucja: Nie</h3>
+                {% endif %}
+            </div>
+            <div id="flat-details-desc">
+              {{ flats.opis }}
+            </div>
+          </div>
+          <div id="flat-detail-photo">
+            <img src="{{flats.zdjecie.url}}" alt="flat-photo">
+          </div>
+          <div class="clearboth">
+          </div>
+        </div>
+      </div>
+    </section>
+  </article>
+{% endblock %}

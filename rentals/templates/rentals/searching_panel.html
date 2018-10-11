@@ -41,14 +41,14 @@
             </div>
             <div class="flat-list-info">
               <div class="flat-list-header">
-                <h2>ul. {{flats.adres}}, {{flats.miasto}}</h2>
+                <a href="{{ flats.get_absolute_url }}"><h2>ul. {{flats.adres}}, {{flats.miasto}}</h2></a>
               </div>
               <div class="flat-list-prize">
                 <h2>{{flats.cena}} zł/dobę</h2>
               </div>
               <div class="clearboth"></div>
               <div class="flat-list-desc">
-                  {{flats.opis}}
+                  <p>{{flats.opis}}</p>
               </div>
               <div class="{% if flats.kaucja %} kaucja-true {% else %} kaucja-false {% endif %} kaucja-div-position">
                   {% if flats.kaucja %}

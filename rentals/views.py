@@ -5,7 +5,9 @@ from django.db.models import Q
 import datetime
 from django.http import HttpResponse
 from django.urls import reverse
-from rentals.forms import RentalModelForm
+from rentals.forms import SearchModelForm, ReserveModelForm
+from django.shortcuts import get_object_or_404
+from django.core.exceptions import ObjectDoesNotExist
 
 def index(request):
     available_flats = Flats.objects.filter(status='d').count()
@@ -26,17 +28,52 @@ def get_flats_count(request):
     return render(request, 'rentals/city_panels.html', context)
 
 def search(request, cityname):
-    myform = RentalModelForm(request.GET or None)
+    myform = SearchModelForm(request.GET or None)
     filter = Flats.objects.filter(miasto__nazwa__contains = cityname)
     if 'Submit' in request.GET:
         if myform.is_valid():
             date_of_rent = myform.cleaned_data['data_wynajecia']
-            date_of_surrender= myform.cleaned_data['data_oddania']
-            myform = RentalModelForm(initial={'data_wynajecia': date_of_rent, 'data_oddania':date_of_surrender})
-            filter = Flats.objects.filter(miasto__nazwa__contains=cityname).filter((Q(reservations__data_wynajecia__gt = date_of_rent) & Q(reservations__data_wynajecia__gt = date_of_surrender)) | (Q(reservations__data_wynajecia__lt = date_of_rent) & Q(reservations__data_oddania__lt = date_of_surrender)) | (Q(reservations__data_wynajecia = None)))
+            date_of_surrender = myform.cleaned_data['data_oddania']
+            myform = SearchModelForm(initial={'data_wynajecia': date_of_rent, 'data_oddania':date_of_surrender})
+            filter = Flats.objects.filter(miasto__nazwa__contains = cityname).exclude(Q(reservations__data_wynajecia__range = [date_of_rent,date_of_surrender]) | Q(reservations__data_oddania__range = [date_of_rent,date_of_surrender]))
     context = {
         'form': myform,
         'cityname': cityname,
         'filter': filter,
     }
-    return render(request, 'rentals/searching_panel.html',context)
+    return render(request, 'rentals/searching_panel.html', context)
+
+class FlatsDetailView(generic.DetailView):
+    model = Flats
+    form_class = ReserveModelForm
+    template_name = 'rentals/flats_detail.html'
+
+    def post(self, request, pk):
+        self.object = self.get_object()
+        myform = self.form_class(request.POST)
+        if myform.is_valid():
+            validation = True
+            last_name = myform.cleaned_data['nazwisko']
+            tel_number = myform.cleaned_data['telefon']
+            date_of_rent = myform.cleaned_data['data_wynajecia']
+            date_of_surrender = myform.cleaned_data['data_oddania']
+            new_reservation = myform.save(commit = False)
+            new_reservation.mieszkanie = self.object
+            new_reservation.save()
+            myform.save_m2m()
+            mess = 'Reservation successfully!'
+        else:
+            validation = False
+            mess = 'Form is valid, try again'
+        context = {
+            'form': myform,
+            'flats': self.object,
+            'validation': validation,
+            'mess': mess,
+        }
+        return render(request, self.template_name, context)
+
+    def get(self, request, pk):
+        self.object = self.get_object()
+        myform = self.form_class()
+        return render(request, self.template_name, {'form': myform, 'flats':self.object})
