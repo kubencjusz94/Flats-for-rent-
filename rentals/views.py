@@ -76,4 +76,5 @@ class FlatsDetailView(generic.DetailView):
     def get(self, request, pk):
         self.object = self.get_object()
         myform = self.form_class()
+        myform.fields['mieszkanie'].initial = self.object
         return render(request, self.template_name, {'form': myform, 'flats':self.object})

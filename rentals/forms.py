@@ -1,5 +1,5 @@
 import datetime
-from django.forms import ModelForm, TextInput, DateInput
+from django.forms import ModelForm, TextInput, DateInput, HiddenInput
 from rentals.models import Reservations
 from django.core.exceptions import ValidationError, MultipleObjectsReturned
 from django.utils.translation import ugettext_lazy as _
@@ -31,18 +31,20 @@ class SearchModelForm(ModelForm):
 class ReserveModelForm(ModelForm):
     class Meta:
         model = Reservations
-        fields = ['nazwisko', 'telefon', 'data_wynajecia', 'data_oddania']
+        fields = ['nazwisko', 'telefon', 'data_wynajecia', 'data_oddania', 'mieszkanie']
         widgets = {
             'nazwisko': TextInput(attrs = {'type':'text', 'class':'form-control', 'placeholder':'Lastname'}),
             'telefon': TextInput(attrs = {'type':'text', 'class':'form-control', 'placeholder':'Phone (optional)'}),
-            'data_wynajecia': DateInput(attrs = {'type':'text', 'class':'form-control datepicker', 'placeholder':'From...', 'autocomplete':'off'},format = '%Y-%m-%d'),
-            'data_oddania': DateInput(attrs = {'type':'text', 'class':'form-control datepicker', 'placeholder':'To..', 'autocomplete':'off'}, format = '%Y-%m-%d')
+            'data_wynajecia': DateInput(attrs = {'type':'text', 'class':'form-control detail-datepicker', 'placeholder':'From...', 'autocomplete':'off'},format = '%Y-%m-%d'),
+            'data_oddania': DateInput(attrs = {'type':'text', 'class':'form-control detail-datepicker', 'placeholder':'To..', 'autocomplete':'off'}, format = '%Y-%m-%d'),
+            'mieszkanie': HiddenInput()
         }
     def clean(self):
         cleaned_data = super(ReserveModelForm, self).clean()
 
         date_of_rent = cleaned_data.get('data_wynajecia')
         date_of_surrender = cleaned_data.get('data_oddania')
+        flat = cleaned_data.get('mieszkanie')
 
         if (date_of_rent or date_of_surrender)  == None:
             raise ValidationError(_('Invalid date - dates required'), code = 'invalid')
@@ -51,10 +53,11 @@ class ReserveModelForm(ModelForm):
         if date_of_rent > date_of_surrender:
             raise ValidationError(_('Invalid date - date of rent must be lower'), code =' invalid')
         try:
-            filter =Reservations.objects.get(Q(data_wynajecia__range = [date_of_rent, date_of_surrender]) | Q(data_oddania__range = [date_of_rent, date_of_surrender]) | Q(data_wynajecia__lt = date_of_rent, data_oddania__gt = date_of_surrender))
-            raise ValidationError(_('This appartment is busy at this time'), code =' invalid')
+            filter = Reservations.objects.get(Q(mieszkanie = flat) & (Q(data_wynajecia__range = [date_of_rent, date_of_surrender]) | Q(data_oddania__range = [date_of_rent, date_of_surrender]) | Q(data_wynajecia__lt = date_of_rent, data_oddania__gt = date_of_surrender)))
+            raise ValidationError(_('That appartment is busy at this time'), code =' invalid')
         except Reservations.DoesNotExist:
             pass
         except MultipleObjectsReturned:
-            raise ValidationError(_('This appartment is busy at this time'), code =' invalid')
+            raise ValidationError(_('That appartment is busy at this time'), code =' invalid')
+
         return cleaned_data

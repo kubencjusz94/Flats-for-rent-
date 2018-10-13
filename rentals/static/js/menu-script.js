@@ -6,8 +6,14 @@ $(document).ready(function(){
   $('.datepicker').datepicker({
     orientation: 'top',
     format: 'yyyy-mm-dd',
+    autoclose: true
   });
-
+  $('.detail-datepicker').datepicker({
+    orientation: 'top',
+    format: 'yyyy-mm-dd',
+    autoclose: true,
+    datesDisabled: ['2018-10-28']
+  });
 /*  $('#myform').submit(function(e){
     $.ajax({
       data: $(this).serialize(),
