@@ -2,14 +2,23 @@ body
 {
    background: url("/static/img/sun_pattern.png");
 }
+.header-div
+{
+  border:4px solid #336699;
+  border-top: none;
+  display:inline-block;
+  width:100%;
+}
+.header-topic-div
+{
+  text-align: center;
+  margin-right:10%;
+}
 h1
 {
     font-size:30px;
     color:#2d5986;
-    border:4px solid #336699;
-    border-top: none;
     padding:1%;
-    text-align: center;
 }
 img
 {
@@ -144,15 +153,15 @@ a:active
   background-color: rgba(0, 32, 128, 0.1);
   padding:1%;
 }
-.kaucja-true
+.deposit-true
 {
   background-color: #80ff80;
 }
-.kaucja-false
+.deposit-false
 {
   background-color: #ff3333;
 }
-.kaucja-div-position
+.deposit-div-position
 {
   position:absolute;
   right:0;
@@ -175,18 +184,20 @@ a:active
 {
   border:4px solid #9999ff;
   padding-left:1%;
+  display:flex;
 }
 #flat-detail-info
 {
+  flex:1;
   float:left;
   font-size:36px;
   position:relative;
   width:50%;
-  height:442px;
   padding-top:1%;
 }
 #flat-detail-photo
 {
+  flex:1;
   float:right;
   width:50%;
   padding:1%;
@@ -226,4 +237,14 @@ a:active
   float:left;
   color: #00004d;
   font-size:24px;
+}
+#detail-deposit
+{
+  margin-bottom:2%;
+}
+.menu-icons
+{
+  width:5%;
+  margin-left:5%;
+  float:left;
 }

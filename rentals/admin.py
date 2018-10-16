@@ -1,23 +1,28 @@
 from django.contrib import admin
-from rentals.models import Cities, Flats, Reservations
+from rentals.models import City, Flat, Reservations
 
-class CitiesAdmin(admin.ModelAdmin):
-    display = ('nazwa')
-admin.site.register(Cities, CitiesAdmin)
+class CityAdmin(admin.ModelAdmin):
+    display = ('name')
+admin.site.register(City, CityAdmin)
 
-class FlatsAdmin(admin.ModelAdmin):
-    list_display = ('miasto', 'adres' , 'status')
-    actions=['change_to_disable', 'change_to_available']
+class ReservationsInline(admin.TabularInline):
+    model = Reservations
+    extra = 0
 
-    def change_to_disable(self, request, queryset):
-        queryset.update(status='n')
-    change_to_disable.short_description='Change flat status to disable'
+class FlatAdmin(admin.ModelAdmin):
+    list_display = ('adress', 'city' , 'status')
+    actions = ['change_to_unavailable', 'change_to_available']
+    inlines = [ReservationsInline]
+
+    def change_to_unavailable(self, request, queryset):
+        queryset.update(status='u')
+    change_to_unavailable.short_description='Change status to unavailable'
 
     def change_to_available(self, request, queryset):
-        queryset.update(status='d')
-    change_to_available.short_description='Change flat status to available'
-admin.site.register(Flats, FlatsAdmin)
+        queryset.update(status='a')
+    change_to_available.short_description='Change status to available'
+admin.site.register(Flat, FlatAdmin)
 
 class ReservationsAdmin(admin.ModelAdmin):
-    list_display=('id', 'mieszkanie', 'telefon', 'data_wynajecia', 'data_oddania')
+    list_display=('id', 'flat', 'phone_number', 'date_of_rent', 'date_of_surrender')
 admin.site.register(Reservations, ReservationsAdmin)

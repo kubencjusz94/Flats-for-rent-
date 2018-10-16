@@ -2,7 +2,15 @@
 
 {% block content %}
 <header>
-  <h1>Step 1. Choose a city</h1>
+  <div class="header-div">
+    <div class="menu-icons">
+      {% load static %}
+      <a href="{% url 'index'%}"><img src="{% static 'img/back.png' %}" alt="back"/></a>
+    </div>
+    <div class="header-topic-div">
+      <h1>Step 1. Choose a city</h1>
+    </div>
+  </div>
 </header>
 <article>
   <section>
@@ -12,7 +20,7 @@
             <a href="{% url 'searching_panel' cityname='Gdańsk' %}">
               {% load static %}
               <img src="{% static 'img/gdansk-menu-photo.jpg'%}" class="img-fluid" alt="Gdansk Old Town"/>
-              <span class="city-flats-info">Gdańsk. Wolnych mieszkań: {{available_flats_gda}}</span>
+              <span class="city-flats-info">Gdańsk. Available flats: {{available_flats_gda}}</span>
             </a>
           </div>
         </div>
@@ -21,7 +29,7 @@
             <a href="{% url 'searching_panel' cityname='Gdynia' %}">
             {% load static %}
               <img src="{% static 'img/gdynia-menu-photo.jpg'%}" class="img-fluid" alt="Gdynia center"/>
-              <span class="city-flats-info">Gdynia. Wolnych mieszkań: {{available_flats_gdy}}</span>
+              <span class="city-flats-info">Gdynia.  Available flats: {{available_flats_gdy}}</span>
             </a>
           </div>
         </div>
@@ -30,7 +38,7 @@
             <a href="{% url 'searching_panel' cityname='Sopot' %}">
             {% load static %}
                 <img src="{% static 'img/sopot-menu-photo.jpg'%}" class="img-fluid" alt="Sopot bird view"/>
-              <span class="city-flats-info">Sopot. Wolnych mieszkań: {{available_flats_sop}}</span>
+              <span class="city-flats-info">Sopot.  Available flats: {{available_flats_sop}}</span>
             </a>
           </div>
         </div>

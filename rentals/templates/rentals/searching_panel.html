@@ -2,7 +2,15 @@
 
 {% block content %}
 <header>
-  <h1>Step 2. Set a date and pick your appartment </h1>
+  <div class="header-div">
+    <div class="menu-icons">
+      {% load static %}
+      <a href="{% url 'city_panels'%}"><img src="{% static 'img/back.png' %}" alt="back"/></a>
+    </div>
+    <div class="header-topic-div">
+      <h1>Step 2. Set a date and pick your appartment </h1>
+    </div>
+  </div>
 </header>
 <article>
   <section>
@@ -11,13 +19,13 @@
         <form id="myform" action="" method="GET">
           {% csrf_token %}
           <div class="input-group form-parts">
-            {{ form.data_wynajecia }}
+            {{ form.date_of_rent }}
             <div class="input-group-addon">
                 <span class="glyphicon-th"></span>
             </div>
           </div>
           <div class="input-group form-parts">
-            {{ form.data_oddania }}
+            {{ form.date_of_surrender }}
             <div class="input-group-addon">
                 <span class="glyphicon-th"></span>
             </div>
@@ -34,24 +42,24 @@
     </div>
     <div id="flat-list">
       {% if filter %}
-        {% for flats in filter %}
+        {% for flat in filter %}
           <div class="flat-list-elements">
             <div class="flat-list-img">
-              <img src="{{flats.zdjecie.url}}" alt="flat-photo">
+              <img src="{{flat.photo.url}}" alt="flat-photo">
             </div>
             <div class="flat-list-info">
               <div class="flat-list-header">
-                <a href="{{ flats.get_absolute_url }}"><h2>ul. {{flats.adres}}, {{flats.miasto}}</h2></a>
+                <a href="{{ flat.get_absolute_url }}"><h2>ul. {{flat.adress}}, {{flat.city}}</h2></a>
               </div>
               <div class="flat-list-prize">
-                <h2>{{flats.cena}} zł/dobę</h2>
+                <h2>{{flat.prize}} zł/dobę</h2>
               </div>
               <div class="clearboth"></div>
               <div class="flat-list-desc">
-                  <p>{{flats.opis}}</p>
+                  <p>{{flat.description}}</p>
               </div>
-              <div class="{% if flats.kaucja %} kaucja-true {% else %} kaucja-false {% endif %} kaucja-div-position">
-                  {% if flats.kaucja %}
+              <div class="{% if flat.deposit %} deposit-true {% else %} deposit-false {% endif %} deposit-div-position">
+                  {% if flat.deposit %}
                     <h3>Kaucja: Tak</h3>
                   {% else %}
                     <h3>Kaucja: Nie</h3>
