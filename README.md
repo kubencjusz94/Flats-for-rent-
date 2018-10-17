@@ -14,7 +14,7 @@ Simple rental app created with Django.
 
 <a name="desc"></a>
 ### 1. About App
-App allows user to reserve a flat from database. The aim of project was to use my knowladge of Python Django to build a first real no-commercial app. Project shows how to manage data from mySQL by Django and exchange information between frontend-backend sides. 
+App allows user to reserve a flat from flats database. The aim of project was to use my knowladge of Python Django to build a first no-commercial django app. Project shows how to manage data from mySQL by Django and exchange information between frontend-backend sides. 
 
 <a name="tech"></a>
 ### 2. Technologies
@@ -74,9 +74,9 @@ workon mydjangoenviroment
 (mydjangoenviroment) $ sudo pip install django
 ```
 ##### #Windows
-'''
+```
 (mydjangoenviroment) pip3 install django
-'''
+```
 #### Installing mySQL
 ##### Ubuntu
 ```
@@ -88,15 +88,36 @@ pip install mysqlclient
 ```
 <a name="details"></a>
 ### Usage
-App have four views:
-* Index page(#index)
-* City Panel page(#citypanels)
-* Searching flat list page(#searching)
-* Detail flat page(#detail)
+App has four views:
+* [Index page](#index)
+* [City Panel page](#citypanels)
+* [Flats list page](#searching)
+* [Detail flat page](#detail)
 
 <a name="index"></a>
 #### Index page
-It's a simple welcome page containing number of available flats from data base.
+It's a simple welcome page which shows number of available flats from data base.
 <p align="center">
-  <img  src = "https://github.com/kubencjusz94/Flats-for-rent-/blob/master/rentals/static/img/logo.png" alt = "Flat Hunters Logo" width="250"/>
+  <img  src = "https://github.com/kubencjusz94/Flats-for-rent-/blob/master/rentals/static/img/index.PNG" alt = "Index page" width="900"/>
+</p>
 
+<a name="citypanels"></a>
+#### City Panel Page
+Page contains panels which allows user to get a list of flat in choosen city.
+<p align="center">
+ <img  src = "https://github.com/kubencjusz94/Flats-for-rent-/blob/master/rentals/static/img/citypanels.png" alt = "City panels page" width="900"/>
+</p>
+
+<a name="searching"></a>
+#### Flats list page
+In this section user can see a list of flats (filtered by city). User can search for a available flat in choosen period of time by using form.
+<p align="center">
+ <img  src = "https://github.com/kubencjusz94/Flats-for-rent-/blob/master/rentals/static/img/searching.png" alt = "Flats list page" width="900"/>
+</p>
+
+<a name="detil"></a>
+#### Flat detail page
+In this place guest can get acquainted with the offer and reserve a flat by form. Form has got a full data validaton.
+<p align="center">
+ <img  src = "https://github.com/kubencjusz94/Flats-for-rent-/blob/master/rentals/static/img/detail.png" alt = "Flat detail page" width="900"/>
+</p>
