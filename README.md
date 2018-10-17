@@ -88,7 +88,7 @@ pip install mysqlclient
 ```
 <a name="details"></a>
 ### Usage
-App have four views:
+App has four views:
 * [Index page](#index)
 * [City Panel page](#citypanels)
 * [Flats list page](#searching)
