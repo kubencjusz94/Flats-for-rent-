@@ -14,7 +14,7 @@ Simple rental app created with Django.
 
 <a name="desc"></a>
 ### 1. About App
-App allows user to   a flat from flats database. The aim of project was to use my knowladge of Python Django to build a first real, no-commercial app. Project shows how to manage data from mySQL by Django and exchange information between frontend-backend sides. 
+App allows user to reserve a flat from flats database. The aim of project was to use my knowladge of Python Django to build a first real, no-commercial app. Project shows how to manage data from mySQL by Django and exchange information between frontend-backend sides. 
 
 <a name="tech"></a>
 ### 2. Technologies
@@ -103,7 +103,7 @@ It's a simple welcome page which shows number of available flats from data base.
 
 <a name="citypanels"></a>
 #### City Panel Page
-Page contains panels which allows user to list of flat in choosen city.
+Page contains panels which allows user to get a list of flat in choosen city.
 <p align="center">
  <img  src = "https://github.com/kubencjusz94/Flats-for-rent-/blob/master/rentals/static/img/citypanels.png" alt = "City panels page" width="900"/>
 </p>
