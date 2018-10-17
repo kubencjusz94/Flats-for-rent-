@@ -74,9 +74,9 @@ workon mydjangoenviroment
 (mydjangoenviroment) $ sudo pip install django
 ```
 ##### #Windows
-'''
+```
 (mydjangoenviroment) pip3 install django
-'''
+```
 #### Installing mySQL
 ##### Ubuntu
 ```
@@ -89,10 +89,10 @@ pip install mysqlclient
 <a name="details"></a>
 ### Usage
 App have four views:
-* Index page(#index)
-* City Panel page(#citypanels)
-* Flats list page(#searching)
-* Detail flat page(#detail)
+* [Index page](#index)
+* [City Panel page](#citypanels)
+* [Flats list page](#searching)
+* [Detail flat page](#detail)
 
 <a name="index"></a>
 #### Index page
