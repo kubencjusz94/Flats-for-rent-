@@ -5,7 +5,7 @@
     <div class="header-div">
       <div class="menu-icons">
         {% load static %}
-        <a href="{{request.META.HTTP_REFERER|escape}}"><img src="{% static 'img/back.png' %}" alt="back"/></a>
+        <a href="{% url 'searching_panel' cityname=flat.city %}"><img src="{% static 'img/back.png' %}" alt="back"/></a>
       </div>
       <div class="header-topic-div">
         <h1>Step 3. Reserve your flat  </h1>
