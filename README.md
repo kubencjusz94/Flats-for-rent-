@@ -14,7 +14,7 @@ Simple rental app created with Django.
 
 <a name="desc"></a>
 ### 1. About App
-App allows user to reserve a flat from database. The aim of project was to use my knowladge of Python Django to build a first real no-commercial app. Project shows how to manage data from mySQL by Django and exchange information between frontend-backend sides. 
+App allows user to   a flat from flats database. The aim of project was to use my knowladge of Python Django to build a first real, no-commercial app. Project shows how to manage data from mySQL by Django and exchange information between frontend-backend sides. 
 
 <a name="tech"></a>
 ### 2. Technologies
