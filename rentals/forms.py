@@ -24,7 +24,7 @@ class SearchModelForm(ModelForm):
         if (form_date_of_rent or form_date_of_surrender)  == None:
             raise ValidationError(_('Invalid date - dates required'), code = 'invalid')
         if (form_date_of_rent or form_date_of_surrender)  < datetime.date.today():
-            raise ValidationError(_('Invalid date - renewal in past'), code = 'invalid')
+            raise ValidationError(_('Invalid date - reserve in past'), code = 'invalid')
         if form_date_of_rent > form_date_of_surrender:
             raise ValidationError(_('Invalid date - date of rent must be lower'), code = 'invalid')
         return cleaned_data
