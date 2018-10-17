@@ -248,3 +248,9 @@ a:active
   margin-left:5%;
   float:left;
 }
+.logo-div
+{
+  width:20%;
+  text-align:center;
+  margin: 0 auto;
+}
