@@ -31,7 +31,7 @@ App allows user to reserve a flat from flats database. The aim of project was to
 
 #### Installing Python 3 
 
-You can easy download python from Python website [here](https://www.python.org/downloads/). I chose Python 3.6 because had a problem with integrate mySQL with Python 3.7.
+You can easy download python from Python website [here](https://www.python.org/downloads/). I chose Python 3.6 because had a problem to integrate mySQL with Python 3.7.
 
 #### Installing pip( Python Packet Index tool)
 ##### Ubuntu
